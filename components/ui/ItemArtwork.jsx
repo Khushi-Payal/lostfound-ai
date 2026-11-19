@@ -1,12 +1,16 @@
 import { getArtwork } from '../../lib/item-art';
 
 export default function ItemArtwork({ item, className = '', compact = false }) {
-  const artwork = getArtwork(item?.category);
+  const artwork = getArtwork(item?.category, item);
   const Icon = artwork.Icon;
+  const image = item?.image || artwork.image;
   return (
     <div className={`relative isolate overflow-hidden bg-gradient-to-br ${artwork.tone} ${className}`}>
-      {item?.image ? (
-        <img src={item.image} alt={item.name || 'Reported item'} className="absolute inset-0 h-full w-full object-cover" />
+      {image ? (
+        <>
+          <img src={image} alt={item?.image ? (item.name || 'Reported item') : `Illustration of ${item?.name || artwork.label}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          {!item?.image && !compact && <span className="absolute bottom-2 right-2 rounded-full border border-white/30 bg-slate-950/65 px-2.5 py-1 text-[9px] font-semibold text-white backdrop-blur">Illustrative image</span>}
+        </>
       ) : (
         <>
           <div className="absolute -right-5 -top-8 h-36 w-36 rounded-full border border-white/40 bg-white/20 blur-[1px]" />
