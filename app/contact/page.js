@@ -1,0 +1,26 @@
+import { Clock3, Mail, MessageCircleQuestion, Phone, ShieldCheck } from 'lucide-react';
+import PageHeading from '../../components/ui/PageHeading';
+import ContactForm from '../../components/forms/ContactForm';
+
+const faqs = [
+  ['Is TraceIt an official police or government service?', 'No. TraceIt is a community-powered demo platform and is not affiliated with law enforcement, transport operators or government agencies. For emergencies or suspected crime, contact local authorities.'],
+  ['Are matching scores verified by AI?', 'No. The current score is produced by an explainable weighted similarity algorithm comparing text, category, brand/colour, location and date. It is an estimate, not proof of identity or ownership.'],
+  ['Will other users see my phone number?', 'No. Public item listings never show the reporter’s phone number or email. You can send messages through TraceIt without exposing contact details.'],
+  ['What should I do before returning a found item?', 'Keep it secure, ask a claimant to describe private identifying details, and arrange a handover in a public place or official lost-property desk. Never ask for or send money.'],
+];
+
+export const metadata = { title: 'Contact TraceIt' };
+
+export default function ContactPage() {
+  return <div className="page-container py-12 sm:py-16">
+    <PageHeading eyebrow="We are here to help" title="Contact the TraceIt team" description="Questions about a report, a possible match, safety or your account? Send us a message and we will take a look." />
+    <div className="grid items-start gap-7 lg:grid-cols-[.7fr_1.3fr]">
+      <aside className="space-y-4">
+        <div className="surface rounded-3xl border border-line p-6"><h2 className="text-lg font-extrabold text-copy">Help & support</h2><p className="mt-2 text-sm leading-6 text-muted">We are a small demo support team. Messages are stored for review in the app’s database or local demo store.</p><div className="mt-5 space-y-4"><a href="mailto:help@traceit.in" className="flex items-center gap-3 rounded-2xl bg-canvas p-3 transition hover:bg-blue-50 dark:hover:bg-blue-950/40"><span className="grid h-9 w-9 place-items-center rounded-xl bg-white text-royal dark:bg-slate-900 dark:text-blue-300"><Mail size={16} /></span><span><span className="block text-[10px] font-bold uppercase tracking-wider text-muted">Email</span><span className="text-sm font-semibold text-copy">help@traceit.in</span></span></a><div className="flex items-center gap-3 rounded-2xl bg-canvas p-3"><span className="grid h-9 w-9 place-items-center rounded-xl bg-white text-teal dark:bg-slate-900 dark:text-teal-300"><Phone size={16} /></span><span><span className="block text-[10px] font-bold uppercase tracking-wider text-muted">Helpline</span><span className="text-sm font-semibold text-copy">1800-TRACEIT <span className="text-xs font-normal text-muted">(demo)</span></span></span></div><div className="flex items-center gap-3 rounded-2xl bg-canvas p-3"><span className="grid h-9 w-9 place-items-center rounded-xl bg-white text-violet-600 dark:bg-slate-900 dark:text-violet-300"><Clock3 size={16} /></span><span><span className="block text-[10px] font-bold uppercase tracking-wider text-muted">Typical response</span><span className="text-sm font-semibold text-copy">Within 1–2 working days</span></span></div></div><div className="mt-5 flex gap-2 rounded-2xl border border-teal-200 bg-teal-50/70 p-3 dark:border-teal-900/50 dark:bg-teal-950/25"><ShieldCheck size={16} className="mt-0.5 shrink-0 text-teal" /><p className="text-[10px] leading-5 text-teal-900/75 dark:text-teal-200/70">Never include passwords, one-time codes, complete identity numbers or payment details in a support message.</p></div></div>
+        <div className="rounded-3xl bg-gradient-to-br from-[#143266] to-[#178f88] p-6 text-white"><span className="grid h-10 w-10 place-items-center rounded-xl bg-white/15"><MessageCircleQuestion size={18} /></span><h3 className="mt-4 text-lg font-extrabold">Need help with a specific item?</h3><p className="mt-2 text-xs leading-5 text-blue-50/80">Open the public report and use secure contact or ownership-claim options to reach the right person.</p><a href="/browse" className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-teal-200 hover:text-white">Browse reports <span aria-hidden="true">→</span></a></div>
+      </aside>
+      <ContactForm />
+    </div>
+    <section className="mt-14"><div className="mb-5 flex items-end justify-between gap-4"><div><p className="eyebrow">Quick answers</p><h2 className="mt-2 text-2xl font-extrabold text-ink dark:text-white">Frequently asked questions</h2></div></div><div className="grid gap-3 md:grid-cols-2">{faqs.map(([question, answer]) => <details key={question} className="surface group rounded-2xl border border-line p-5"><summary className="cursor-pointer list-none text-sm font-bold text-copy marker:hidden"><span className="flex items-center justify-between gap-3">{question}<span className="text-xl font-normal text-royal transition group-open:rotate-45 dark:text-blue-300">+</span></span></summary><p className="mt-3 border-t border-line pt-3 text-xs leading-6 text-muted">{answer}</p></details>)}</div></section>
+  </div>;
+}
